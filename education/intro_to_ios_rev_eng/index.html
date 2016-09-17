@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+
+    <style> .shell { color:aqua; } </style>
+    <title>
+      Introduction to iOS reverse Engineering
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/sky.css"
+    id="theme">
+
+    <!-- href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css" -->
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# _iOS reverse engineering_
+
+## an introduction
+------------------
+#### ArmSec 2016, American University of Armenia, 09/17/2016
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Quick about me_
+-------------------
+
+My name is Edgar Aroutiounian, I'm a versatile programmer with many
+different interests like functional programming, programming
+language theory, type systems, compilers, iOS.
+
+I worked in San Francisco and decided to leave in late July when
+I thought about the April Artsakh war and the Erebuni
+Police station debacle.
+
+I work with many different programming languages, styles of coding;
+my favorite language is `OCaml`, google it.	    
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Some Basics_
+----------------
+
+1. _iOS_ is the most secure mobile operating system out there.
+
+2. Because _Apple_ owns the hardware as well as the software, they 
+   are able to create extra secure systems, from the bootloader 
+   to especially the encryption, which gets a boost from the CPU.
+
+3. You'll need to have a jailbroken device to get anything serious done.
+   Jailbreaking means having the ability to sign your own code and 
+   running arbitrary code, it means having the entire device available 
+   to you. (HINT: Its a _UNIX_ system!)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _What kind of knowledge is needed for iOS RE_?
+--------------------------------------------------
+
+1. ...be comfortable with _UNIX_, since iOS is basically BSD
+
+2. ...understand _git_ since most tools and code are distributed via _git_
+
+3. ...know _C_ & practical _C_ coding, sometimes some _C++_
+
+4. ...know _Objective-C_, since, well duh...
+
+5. ...able to use _Makefile_ & _Make_
+
+6. ...understand compiling/linking, since you'll be compiling tools
+   and linking in your code.
+
+7. ...little bit of _ARM_ assembly, (hopper and IDA make this easy).
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _What can you do with such knowledge_?
+------------------------------------------
+
+Some examples:
+
+1. Get a million dollars instantly for finding a zero-day in _iOS_ itself.
+
+2. Create _tweaks_, that is create functionality changes
+   in existing apps. There is a jailbreak app store called _Cydia_ where
+   you can distribute your work for free or for payment.
+
+3. Get a professional job doing security work in iOS, mostly in 
+   Miami, Israel.
+
+4. Have a lot of fun and understand _iOS_ much deeper, good for 
+   regular app developers too.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Getting started_
+---------------------
+
+1. Work on _OSX_ or _Linux_
+
+2. Have a jailbroken _iOS_ device, can check if its eligible with
+   [canijailbreak.com](http://canijailbreak.com)
+
+3. Use `theos`, this is like a build system for jailbreak development, 
+   can get it at [github.com/theos/theos](https://github.com/theos/theos). 
+   Look at the FAQs, theos generates some premade template _Makefiles_ that
+   make it easy to get started.
+
+4. Use tools like `class-dump` to get a interface dump of the app
+   you're interested in tweaking/code injecting, if more interested in
+   reverse engineering at a lower level, you'll need to decrypt the binary
+   since iOS binaries are encrypted, use tools like 
+   `clutch` or `dumpdecrypted`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <!-- Example mitmproxy session -->
+	  <script type="text/template">
+### _Slight detour into recon_
+------------------------------
+
+Reverse engineering isn't just about opening binaries, but also recon. 
+I mentioned tools like `class-dump`. Another thing you want to usually do
+is see what kind of `HTTP` requests an app is doing; you need to 
+_man in the middle_ attack the device. You can do that easily with 
+`mitmproxy`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+ ### _Directly on the device_
+ ------------------------------
+
+When you work on the device, you can code all kinds of 
+code injection techniques. One simple example I've written about
+[here](http://hyegar.com/2016/08/31/grabbing-function-location/).
+
+The short version is that you do:
+
+```
+DYLD_INSERT_LIBRARIES=code_injection.dylib ./inject_me
+```
+Where a `.dylib` is `OS X`/`iOS`'s version of a `.so` and the `.dylib`
+is where you put your appropriate memory offset function pointer and the
+`inject_me` is the binary you're targeting.
+
+This kind of work is made easier with `Cydia Substrate`, a 
+new alternative is called `Frida`.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <!-- Example, show Turkish bank cert -->
+	  <script type="text/template">
+### _and the interesting things you find in apps..._
+----------------------------------------------------
+
+Developers are human and human are usually a bit lazy
+
+People leave in their apps, both in the binary and in the `IPA`
+all kinds of goodies like `AWS` passwords, entire `.git` repos 
+and even `TLS` certs which can be converted into `ssh` keys...
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _Wrapping up_
+----------------
+
+Shameless plug: I'm trying to establish a hackerspace in Yerevan, 
+see the presentation at http://hyegar.com/hackerspace
+a place of learning all kinds of skills.
+
+# Any questions?
+	  </script>
+	</section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:true,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
