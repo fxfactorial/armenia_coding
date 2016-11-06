@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+
+    <style> .shell { color:aqua; } </style>
+    <title>
+      Doing Open Source
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css"
+    id="theme">
+
+    <!-- href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css" -->
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet"
+    href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# _Open Source and why you should care_
+
+## Edgar Aroutiounian
+---------------------
+#### BarCamp 2016
+#### Vanadzor, Armenia	   
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _About me_
+-------------
+
+My name is Edgar Aroutiounian, I'm a versatile programmer with many
+different interests like functional programming, programming
+language theory, type systems, compilers, iOS.
+
+I worked in San Francisco and decided to leave in late July 2016 when
+I thought about the April Artsakh war and the Erebuni
+Police station debacle.
+
+I work with many different programming languages, styles of coding;
+my favorite language is [`OCaml`](https://en.wikipedia.org/wiki/OCaml), 
+google it.	    
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _What is Open Source?_
+-------------------------
+
+Open source is a few things:
+
+1. ...its culture
+
+2. ...its community
+
+3. ...its opportunity
+
+4. ...its a way to learn quickly
+
+5. ...its code whose source is open and available to reuse, free of charge.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _What is Open Source?_
+-------------------------
+Here's a famous
+[example](https://groups.google.com/forum/#!topic/comp.os.minix/dlNtH7RRrGA%5B1-25%5D)
+
+```
+Linus Benedict Torvalds 8/25/91
+
+Hello everybody out there using minix -
+I'm doing a (free) operating system (just a hobby, won't be big and
+professional like gnu) for 386(486) AT clones.  This has been brewing
+since april, and is starting to get ready.  I'd like any feedback on
+things people like/dislike in minix, as my OS resembles it somewhat
+(same physical layout of the file-system (due to practical reasons)
+among other things).
+
+I've currently ported bash(1.08) and gcc(1.40), and things seem to work. 
+This implies that I'll get something practical within a few months, and
+I'd like to know what features most people would want.  Any suggestions
+are welcome, but I won't promise I'll implement them :-)
+
+Linus (torv...@kruuna.helsinki.fi)
+
+PS.  Yes - it's free of any minix code, and it has a multi-threaded fs. 
+It is NOT protable (uses 386 task switching etc), and it probably never
+will support anything other than AT-harddisks, as that's all I have :-(. 
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Open Source_
+-----------------
+Besides Linux, other famous open source projects you might have heard of include:
+
+Docker, Python, Ruby, FreeBSD, git, Angular, React, jquery and much more.
+
+Open source is the standard way that software is developed in Silicon Valley,
+you get a massive advantage of developing code out in the open.
+
+Another underappreciated bonus, by developing out in the open you can have 
+many people see your code, "With enough eyeballs, all bugs are shallow."
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _How do I get started?_
+---------------------------
+Notice that I put point **5** on the earlier slide as the last one. 
+
+Open source is really culture, a mentality of programmers 
+working together on a common technical goal. You engage the greater
+coding community when you work together with other programmers.
+
+The easiest way to get started is to find a topic or project that 
+you're interested in and starting bug fixing. If the project you like
+is on `Github`, then go through the issues and fix the small bugs.
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Benefits to you_
+---------------------
+You get several:
+
+1. You get better at coding, always a good thing.
+
+2. You learn new technologies, new libraries, new languages.
+
+3. There's a record of your coding, people can verify that you actually can code
+
+4. You build relationships with other coders, make new friends.
+
+5. Job offers! I've gotten job offers, interviews 
+   from Facebook, Google, DropBox and many others simply from people knowing 
+   about me and seeing my [open source work](https://github.com/fxfactorial).
+   I have code running in Facebook and I don't even work there.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Wrapping up_
+-----------------
+
+We have a hackerspace in Yerevan called [iterate](http://iteratehackerspace.github.io/)
+All our code there is open source, here is the source code of the our
+winning entry at the fintegration hackathon:
+[code](https://github.com/iteratehackerspace/fintech-hackathon)
+
+## Any questions?
+	  </script>
+	</section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:true,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
