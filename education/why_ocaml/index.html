@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Why OCaml
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Why OCaml?
+
+## Edgar Aroutiounian
+---------------------
+#### iterate hackerspace at ISTC, 07-12-2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _About me_
+---------------
+Many of you know about me, I code in many different languages.
+After coding so much in so many different languages I have 
+come to some opinions about what I want from a coding language.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Language qualifications_
+----------------------------
+1. The language should produce fast code
+
+2. The language should not force on me styles of coding.
+
+3. The language should be fun to code in.
+
+4. The language should have a strong type system.
+
+5. The langauge should have a good ecosystem of developer tools.
+
+6. The language should work on multiple platforms.
+
+7. The language should have support for generic programming.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Language qualifications cont..._
+------------------------------------
+Fast code usually means compiled code, so this rules out 
+all the interpreted languages, so no Python, Ruby, JavaScript.
+=> OCaml compiles to native code or bytecode
+
+Not forcing style on me rules out Java, C# 
+(They force object-oriented code) => OCaml lets me write
+functional style code by default but Objects and mutation 
+still exist and are easy to use.
+
+Fun to code in rules out Java, its extremely verbose, also 
+rules out C, it forces you to think about small details like 
+memory allocation, pointers. => OCaml is garbage collected with 
+one of the fastest garbage collectors out there.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Language qualifications cont..._
+------------------------------------
+Strong type system requirements rules out all the interpreted
+languages, they are uni-typed, very type unsafe. Some language
+type systems suck like Java, very verbose and forces you to write 
+awkward code. (Basically want no `NULL` pointers.) => OCaml 
+has one of the strongest type systems out there, its based on
+the lambda calculus and 
+[Hindley–Milner type system](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system)
+
+All the big name languages now have pretty good developer tools.
+=> OCaml has [merlin](https://github.com/the-lambda-church/merlin), probably
+the most powerful static analyzer for languages, can work on broken ASTs,
+it is context sensitive.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Language qualifications cont..._
+------------------------------------
+Most languages support multiple platforms => OCaml compiles to
+`x86`, `ARM` (including iOS, Android, Raspberry Pi), `sparc` and it has
+two to JavaScript compilers.
+
+Only applicable to the compiled languages, C completely fails here, C++ is 
+very good at it, Java's generic are crap, just compiler casting for you.
+=> OCaml has one of the most powerful module systems, with functors letting
+you make new modules at runtime.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Coming to OCaml_
+--------------------
+I first encountered OCaml in my compilers course at Columbia university.
+A compiler is a program that converts source code into machine code for a 
+computer to run, like `gcc`, `clang`.
+
+About six months after that course I began looking for a new language to learn, 
+to be very good in. After going through the reasons I mentioned, I came down 
+to two choices, `OCaml` and `Haskell`. I didn't choose `Haskell` because it forces
+you code in a functional style and introduces difficult concepts early on; monads 
+and its lazily evaluated, which I don't like to be forced into.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Coming to OCaml cont..._
+---------------------------
+So given this situation I picked `OCaml` and for several months sat at home and 
+taught myself deeper OCaml.
+Here's the first program I made, 
+a space invaders type game, source: [code](https://github.com/fxfactorial/lambda-invaders)
+
+![](./space_invader.gif)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _So what does it look like?_
+-------------------------------
+Here's an example from my `brozip` program.
+![](./why_ocaml_example.png)
+
+Notice this program has no intermediary variables, the data flows in one direction.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Type system_ 
+----------------
+The type system is very, very strong. There is no such thing as a `NULL` pointer
+in the language, it simply does not exist.
+![](./usbmux_example.png)
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Type system cont..._ 
+------------------------
+The type system + `merlin` let you know the type of anything, 
+and the types are inferred. Inferred types means we don't have to write verbose 
+things like:
+
+```
+Person armo = new Person('Gor', 27);
+```
+Why do we have to say Person twice on the same line? We'd like the compiler
+to figure out that the variable of `armo` is of type `Person`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Type system cont..._ 
+------------------------
+OCaml + `merlin` figure this out for us: 
+![](./ocaml_typesystem.png)
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Final thoughts_
+-------------------
+Always be coding and enjoy what you do, know at least two programming languages
+deeply.
+	  </script>
+	</section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:true,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
